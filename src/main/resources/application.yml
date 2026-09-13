@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: ms-andesstay-bff
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${AZURE_ISSUER_URI:https://login.microsoftonline.com/fbf645d5-8f6d-45fc-9e8d-c8866d008af1/v2.0}
+
+server:
+  port: ${SERVER_PORT:8081}
+
+andesstay:
+  security:
+    # Debe coincidir con el "aud" del access token emitido por Azure AD para la API
+    audience: ${AZURE_API_AUDIENCE:api://d6959b0c-9ec2-432e-bddb-54bd0e83ace9}
+    # Claim donde Azure AD entrega los App Roles asignados (Admin, Operador, Cliente, Auditor)
+    roles-claim: roles
+    # Origenes permitidos para CORS (el frontend Angular). Lista separada por comas.
+    allowed-origins: ${ALLOWED_ORIGINS:http://localhost:4200}
+  downstream:
+    reservations-url: ${RESERVATIONS_SERVICE_URL:http://localhost:8082}
+    catalog-url: ${CATALOG_SERVICE_URL:http://localhost:8083}
+    audit-url: ${AUDIT_SERVICE_URL:http://localhost:8084}
+    report-url: ${REPORT_SERVICE_URL:http://localhost:8085}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+logging:
+  level:
+    com.andesstay: INFO
