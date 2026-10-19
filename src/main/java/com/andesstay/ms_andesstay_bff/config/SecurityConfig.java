@@ -101,6 +101,9 @@ public class SecurityConfig {
                         // Auditoria: solo lectura para Admin y Auditor
                         .requestMatchers(HttpMethod.GET, "/api/audit/**").hasAnyRole("Admin", "Auditor")
 
+                        // Administracion de RabbitMQ (ms-andesstay-rabbit-admin): solo Admin
+                        .requestMatchers("/api/rabbit/**").hasRole("Admin")
+
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)))

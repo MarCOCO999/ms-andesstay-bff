@@ -5,7 +5,7 @@ Backend for Frontend del proyecto **AndesStay** (caso DSY1107 – Desarrollo Clo
 ## Rol en la arquitectura
 
 ```
-Angular (MSAL) → AWS API Gateway → ms-andesstay-bff → { reservations | catalog | audit | report }
+Angular (MSAL) → AWS API Gateway → ms-andesstay-bff → { reservations | catalog | audit | report | rabbit-admin }
 ```
 
 - Valida firma, `issuer`, `audience`, vigencia y rol del JWT emitido por Azure AD.
@@ -33,6 +33,7 @@ Angular (MSAL) → AWS API Gateway → ms-andesstay-bff → { reservations | cat
 | `CATALOG_SERVICE_URL` | URL base de `ms-andesstay-catalog` | `http://localhost:8083` |
 | `AUDIT_SERVICE_URL` | URL base de `ms-andesstay-audit` | `http://localhost:8084` |
 | `REPORT_SERVICE_URL` | URL base de `ms-andesstay-report` | `http://localhost:8085` |
+| `RABBIT_ADMIN_SERVICE_URL` | URL base de `ms-andesstay-rabbit-admin` (`/api/rabbit/**`, solo rol Admin) | `http://localhost:8086` |
 
 ## Cómo ejecutarlo en local
 
@@ -48,4 +49,4 @@ Requiere Java 21. No depende de ninguna base de datos ni broker propio, solo de 
 
 ## Repos relacionados
 
-[frontend-andesstay](https://github.com/MarCOCO999/frontend-andesstay) · [ms-andesstay-reservations](https://github.com/MarCOCO999/ms-andesstay-reservations) · [ms-andesstay-catalog](https://github.com/MarCOCO999/ms-andesstay-catalog) · [ms-andesstay-notify](https://github.com/MarCOCO999/ms-andesstay-notify) · [ms-andesstay-audit](https://github.com/MarCOCO999/ms-andesstay-audit) · [ms-andesstay-report](https://github.com/MarCOCO999/ms-andesstay-report) · [andesstay-infra](https://github.com/MarCOCO999/andesstay-infra)
+[frontend-andesstay](https://github.com/MarCOCO999/frontend-andesstay) · [ms-andesstay-reservations](https://github.com/MarCOCO999/ms-andesstay-reservations) · [ms-andesstay-catalog](https://github.com/MarCOCO999/ms-andesstay-catalog) · [ms-andesstay-notify](https://github.com/MarCOCO999/ms-andesstay-notify) · [ms-andesstay-audit](https://github.com/MarCOCO999/ms-andesstay-audit) · [ms-andesstay-report](https://github.com/MarCOCO999/ms-andesstay-report) · [ms-andesstay-rabbit-admin](https://github.com/MarCOCO999/ms-andesstay-rabbit-admin) · [andesstay-infra](https://github.com/MarCOCO999/andesstay-infra)

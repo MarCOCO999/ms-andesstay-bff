@@ -5,7 +5,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.util.Map;
 
 @ConfigurationProperties(prefix = "andesstay.downstream")
-public record DownstreamProperties(String reservationsUrl, String catalogUrl, String auditUrl, String reportUrl) {
+public record DownstreamProperties(String reservationsUrl, String catalogUrl, String auditUrl, String reportUrl,
+                                   String rabbitAdminUrl) {
 
     /**
      * Mapea el primer segmento de path (/api/{domain}/**) a la URL base del microservicio de dominio.
@@ -15,7 +16,8 @@ public record DownstreamProperties(String reservationsUrl, String catalogUrl, St
                 "reservations", reservationsUrl,
                 "catalog", catalogUrl,
                 "audit", auditUrl,
-                "report", reportUrl
+                "report", reportUrl,
+                "rabbit", rabbitAdminUrl
         );
     }
 }
