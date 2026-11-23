@@ -95,6 +95,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/reservations").hasAnyRole("Admin", "Operador", "Cliente")
                         .requestMatchers(HttpMethod.GET, "/api/reservations/**").hasAnyRole("Admin", "Operador", "Cliente")
 
+                        // Perfil (registro) del cliente: cada usuario solo lee/edita el suyo (/api/profile/me)
+                        .requestMatchers("/api/profile/**").hasAnyRole("Admin", "Operador", "Cliente")
+
                         // Reportes: solo Admin
                         .requestMatchers("/api/report/**").hasRole("Admin")
 
@@ -103,6 +106,9 @@ public class SecurityConfig {
 
                         // Administracion de RabbitMQ (ms-andesstay-rabbit-admin): solo Admin
                         .requestMatchers("/api/rabbit/**").hasRole("Admin")
+
+                        // Administracion de Kafka (ms-andesstay-kafka-admin): solo Admin
+                        .requestMatchers("/api/kafka/**").hasRole("Admin")
 
                         .anyRequest().authenticated()
                 )

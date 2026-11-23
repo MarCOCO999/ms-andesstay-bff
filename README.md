@@ -5,7 +5,7 @@ Backend for Frontend del proyecto **AndesStay** (caso DSY1107 – Desarrollo Clo
 ## Rol en la arquitectura
 
 ```
-Angular (MSAL) → AWS API Gateway → ms-andesstay-bff → { reservations | catalog | audit | report | rabbit-admin }
+Angular (MSAL) → AWS API Gateway → ms-andesstay-bff → { reservations | catalog | audit | report | rabbit-admin | kafka-admin }
 ```
 
 - Valida firma, `issuer`, `audience`, vigencia y rol del JWT emitido por Azure AD.
@@ -17,7 +17,7 @@ Angular (MSAL) → AWS API Gateway → ms-andesstay-bff → { reservations | cat
 
 ## Stack
 
-- Spring Boot 4.1.1 / Java 21
+- Spring Boot 4.1.1 / Java 25 (LTS)
 - Spring Security OAuth2 Resource Server (validación de JWT contra Azure AD v2.0)
 - `RestClient` (Spring 6.1+) para el proxy hacia los microservicios de dominio
 
@@ -34,10 +34,11 @@ Angular (MSAL) → AWS API Gateway → ms-andesstay-bff → { reservations | cat
 | `AUDIT_SERVICE_URL` | URL base de `ms-andesstay-audit` | `http://localhost:8084` |
 | `REPORT_SERVICE_URL` | URL base de `ms-andesstay-report` | `http://localhost:8085` |
 | `RABBIT_ADMIN_SERVICE_URL` | URL base de `ms-andesstay-rabbit-admin` (`/api/rabbit/**`, solo rol Admin) | `http://localhost:8086` |
+| `KAFKA_ADMIN_SERVICE_URL` | URL base de `ms-andesstay-kafka-admin` (`/api/kafka/**`, solo rol Admin) | `http://localhost:8087` |
 
 ## Cómo ejecutarlo en local
 
-Requiere Java 21. No depende de ninguna base de datos ni broker propio, solo de que los microservicios de dominio estén levantados (ver [andesstay-infra](https://github.com/MarCOCO999/andesstay-infra) para la infraestructura local).
+Requiere Java 25. No depende de ninguna base de datos ni broker propio, solo de que los microservicios de dominio estén levantados (ver [andesstay-infra](https://github.com/MarCOCO999/andesstay-infra) para la infraestructura local).
 
 ```bash
 ./mvnw spring-boot:run
